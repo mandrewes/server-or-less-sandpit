@@ -60,11 +60,17 @@ package:
   artifact: target/server-or-less-dev.jar
 
 functions:
-  server-or-less:
-    handler: com.yolo.example.serverorless.handlers.GetSetMessageHandler
+  server-or-less-save:
+    handler: com.yolo.example.serverorless.services.lambda.SaveStuffLambdaFacade
     events:
       - http:
-          path: server-or-less
+          path: stuff
+          method: post
+  server-or-less-list:
+    handler: com.yolo.example.serverorless.services.lambda.ListStuffLambdaFacade
+    events:
+      - http:
+          path: stuff/list
           method: get
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

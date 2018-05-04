@@ -8,17 +8,18 @@ import com.yolo.example.serverorless.services.logic.StuffService;
 import com.yolo.example.serverorless.utils.AbstractLambdaSpringService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
+
+import java.util.List;
 
 
-public class SaveStuffLambdaFacade extends AbstractLambdaSpringService<Stuff, ApiGatewayResponse> {
+public class ListStuffLambdaFacade extends AbstractLambdaSpringService<Stuff, ApiGatewayResponse> {
 
-    private static final Logger LOG = Logger.getLogger(SaveStuffLambdaFacade.class);
+    private static final Logger LOG = Logger.getLogger(ListStuffLambdaFacade.class);
 
     @Autowired
     private StuffService stuffService;
 
-    public SaveStuffLambdaFacade() {
+    public ListStuffLambdaFacade() {
         super();
         wire(this);
     }
@@ -38,7 +39,7 @@ public class SaveStuffLambdaFacade extends AbstractLambdaSpringService<Stuff, Ap
     @Override
     public ApiGatewayResponse handleRequest(APIGatewayProxyRequestEvent proxyEvent, Stuff model, Context context) {
 
-        Stuff ret = stuffService.saveStuff(model);
+        List<Stuff> ret = stuffService.listStuff();
 
         return ApiGatewayResponse.builder()
                 .setStatusCode(200)

@@ -32,7 +32,10 @@ public abstract class AbstractLambdaSpringService<C, R> implements RequestHandle
         // Lambda is supposed to magically do this - but didnt seem to work for me after a few go's
         C model = null;
         try {
-            model = (C) objectMapper.readValue(proxyEvent.getBody(), getModelClass());
+            if ( proxyEvent.getBody() != null && proxyEvent.getBody().length() > 0) {
+                model = (C) objectMapper.readValue(proxyEvent.getBody(), getModelClass());
+            }
+
             return this.handleRequest(proxyEvent, model, context);
         } catch (IOException e) {
             LOG.error(e.getMessage(),e);
