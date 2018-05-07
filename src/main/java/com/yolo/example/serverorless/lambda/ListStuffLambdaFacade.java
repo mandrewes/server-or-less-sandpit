@@ -1,4 +1,4 @@
-package com.yolo.example.serverorless.services.lambda;
+package com.yolo.example.serverorless.lambda;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
@@ -24,17 +24,10 @@ public class ListStuffLambdaFacade extends AbstractLambdaSpringService<Stuff, Ap
         wire(this);
     }
 
-//    @Autowired
-//    @Required
-//    public void setStuffService(StuffService stuffService) {
-//        this.stuffService = stuffService;
-//    }
-//
     @Override
     public Class getModelClass() {
         return Stuff.class;
     }
-
 
     @Override
     public ApiGatewayResponse handleRequest(APIGatewayProxyRequestEvent proxyEvent, Stuff model, Context context) {

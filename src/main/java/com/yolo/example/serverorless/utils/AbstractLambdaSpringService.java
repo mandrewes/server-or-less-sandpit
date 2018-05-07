@@ -4,7 +4,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yolo.example.serverorless.services.lambda.SaveStuffLambdaFacade;
+import com.yolo.example.serverorless.lambda.SaveStuffLambdaFacade;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 

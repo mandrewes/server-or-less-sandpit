@@ -4,7 +4,7 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yolo.example.serverorless.model.ApiGatewayResponse;
 import com.yolo.example.serverorless.model.Stuff;
-import com.yolo.example.serverorless.services.lambda.SaveStuffLambdaFacade;
+import com.yolo.example.serverorless.lambda.SaveStuffLambdaFacade;
 import com.yolo.example.serverorless.utils.LamdaSpringUtil;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;

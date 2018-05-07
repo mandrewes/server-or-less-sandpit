@@ -1,4 +1,4 @@
-package com.yolo.example.serverorless.services.lambda;
+package com.yolo.example.serverorless.lambda;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
@@ -8,7 +8,6 @@ import com.yolo.example.serverorless.services.logic.StuffService;
 import com.yolo.example.serverorless.utils.AbstractLambdaSpringService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 
 
 public class SaveStuffLambdaFacade extends AbstractLambdaSpringService<Stuff, ApiGatewayResponse> {
@@ -23,12 +22,6 @@ public class SaveStuffLambdaFacade extends AbstractLambdaSpringService<Stuff, Ap
         wire(this);
     }
 
-//    @Autowired
-//    @Required
-//    public void setStuffService(StuffService stuffService) {
-//        this.stuffService = stuffService;
-//    }
-//
     @Override
     public Class getModelClass() {
         return Stuff.class;

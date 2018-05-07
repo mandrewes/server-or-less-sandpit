@@ -61,13 +61,13 @@ package:
 
 functions:
   server-or-less-save:
-    handler: com.yolo.example.serverorless.services.lambda.SaveStuffLambdaFacade
+    handler: com.yolo.example.serverorless.lambda.SaveStuffLambdaFacade
     events:
       - http:
           path: stuff
           method: post
   server-or-less-list:
-    handler: com.yolo.example.serverorless.services.lambda.ListStuffLambdaFacade
+    handler: com.yolo.example.serverorless.lambda.ListStuffLambdaFacade
     events:
       - http:
           path: stuff/list
