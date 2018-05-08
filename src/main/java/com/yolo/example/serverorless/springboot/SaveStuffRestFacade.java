@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -21,17 +22,24 @@ public class SaveStuffRestFacade {
     @Autowired
     private StuffService stuffService;
 
-    @RequestMapping("/")
+    @RequestMapping("/stuff/")
     @ResponseBody
     public String home() {
         return "Hello World!";
     }
 
-
-    @RequestMapping("/list")
+    @RequestMapping(value = "/stuff/list", method = RequestMethod.GET)
     @ResponseBody
     public List<Stuff> listStuff() {
         List<Stuff> ret = stuffService.listStuff();
+        return ret;
+    }
+
+
+    @RequestMapping(value = "/stuff",method = RequestMethod.POST)
+    @ResponseBody
+    public Stuff listStuff(Stuff s) {
+        Stuff ret = stuffService.saveStuff(s);
         return ret;
     }
 
