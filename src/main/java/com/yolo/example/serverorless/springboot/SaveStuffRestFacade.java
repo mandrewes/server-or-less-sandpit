@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,12 +23,6 @@ public class SaveStuffRestFacade {
     @Autowired
     private StuffService stuffService;
 
-    @RequestMapping("/stuff/")
-    @ResponseBody
-    public String home() {
-        return "Hello World!";
-    }
-
     @RequestMapping(value = "/stuff/list", method = RequestMethod.GET)
     @ResponseBody
     public List<Stuff> listStuff() {
@@ -36,9 +31,9 @@ public class SaveStuffRestFacade {
     }
 
 
-    @RequestMapping(value = "/stuff",method = RequestMethod.POST)
+    @RequestMapping(value = "/stuff/",method = RequestMethod.POST, produces="application/json", consumes="application/json")
     @ResponseBody
-    public Stuff listStuff(Stuff s) {
+    public Stuff listStuff(@RequestBody Stuff s) {
         Stuff ret = stuffService.saveStuff(s);
         return ret;
     }
