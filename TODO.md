@@ -5,6 +5,7 @@
 - query 1m records
 - query ffm meta
 
+- build or xfer to  ec2 instance
 - run on ec2 instance
 
 {
