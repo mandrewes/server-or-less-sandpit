@@ -13,7 +13,7 @@ import org.springframework.context.annotation.ImportResource;
  * @EnableAutoConfiguration
  * @ComponentScan
  */
-@SpringBootApplication(scanBasePackages = {"com.yolo.example.serverorless.springboot"})
+@SpringBootApplication(scanBasePackages = {"com.yolo.example.serverorless.fascades.springboot"})
 @ImportResource("classpath:/spring/app-ctx.xml")
 public class Application {
     public static void main(String[] args) {

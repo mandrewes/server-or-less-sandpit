@@ -6,6 +6,7 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
+import tech.rsqn.useful.things.lambda.LambdaSpringUtil;
 
 import java.io.IOException;
 
@@ -18,7 +19,7 @@ public abstract class AbstractLambdaSpringService<C, R> implements RequestHandle
     }
 
     protected void wire(Object o) {
-        LamdaSpringUtil.wireInSpring(o, o.getClass().getSimpleName());
+        LambdaSpringUtil.wireInSpring(o, o.getClass().getSimpleName());
     }
 
     public abstract R handleRequest(APIGatewayProxyRequestEvent proxyEvent, C model, Context context);

@@ -1,9 +1,9 @@
 package com.yolo.example.serverorless.handlers;
 
-import com.yolo.example.serverorless.utils.LamdaSpringUtil;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import tech.rsqn.useful.things.lambda.LambdaSpringUtil;
 
 public class LambdaStuffFacadeLocalIntegrationTests extends AbstractDynamoTest {
 
@@ -17,10 +17,10 @@ public class LambdaStuffFacadeLocalIntegrationTests extends AbstractDynamoTest {
         System.setProperty("dynamo.endpoint","http://localhost:8000");
         super.setUp();
 
-        LamdaSpringUtil.setGlobalRootContextPath("/spring/test-app-ctx.xml");
-        LamdaSpringUtil.wireInSpring(this,"nada");
+        LambdaSpringUtil.setGlobalRootContextPath("/spring/test-app-ctx.xml");
+        LambdaSpringUtil.wireInSpring(this,"nada");
 
-//        saveStuffFacade = new SaveStuffLambdaFacade();//LamdaSpringUtil.getCtx().getBean(SaveStuffLambdaFacade.class);
+//        saveStuffFacade = new SaveStuffLambdaFacade();//LambdaSpringUtil.getCtx().getBean(SaveStuffLambdaFacade.class);
     }
 
     @AfterMethod
