@@ -52,7 +52,7 @@ public class GenerateRandomRecordService extends AbstractDynamoBackedService {
         jsonMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         cheeses = loadCheeses();
         pdc = loadPesticides();
-        executor = Executors.newFixedThreadPool(10);
+        executor = Executors.newFixedThreadPool(20);
     }
 
     public CollectionStatistics generateConcurrently(int numJobs, final int sizePerJob, long throttleA, long throttleB) {
