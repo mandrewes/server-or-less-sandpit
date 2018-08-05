@@ -80,7 +80,7 @@ public class GenerateRandomRecordService extends AbstractDynamoBackedService {
     }
 
     public CollectionStatistics generateNRandomDescriptors(int n, String name, long throttleB) {
-        int batchSize = 100;
+        int batchSize = 25;
 
         CollectionStatsRecorder rec = new CollectionStatsRecorder();
 
