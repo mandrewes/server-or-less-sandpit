@@ -42,12 +42,21 @@ public class DocService extends AbstractDynamoBackedService {
     public List<DocDescriptor> retrieveSomeDocs() {
         DynamoDBScanExpression expression = new DynamoDBScanExpression();
         ScanResultPage<DocDescriptor> l = mapper.scanPage(DocDescriptor.class, expression, mapperConfig);
-        List<DocDescriptor> ret = l.getResults();
+
+
+        List<DocDescriptor> ret = new ArrayList<>();
+
+        for (DocDescriptor docDescriptor : l.getResults()) {
+            ret.add(docDescriptor);
+            if (ret.size() == 100) {
+                break;
+            }
+        }
         return ret;
     }
 
     public DocDescriptor getDocDescriptor(String id) {
-        DocDescriptor ret = mapper.load(DocDescriptor.class,id);
+        DocDescriptor ret = mapper.load(DocDescriptor.class, id);
         return ret;
     }
 
@@ -62,23 +71,23 @@ public class DocService extends AbstractDynamoBackedService {
     }
 
 
-    public List<DocDescriptor> filterAndLimit( PaginatedQueryList<DocDescriptor> docs, SearchRequest req, int max ) {
+    public List<DocDescriptor> filterAndLimit(PaginatedQueryList<DocDescriptor> docs, SearchRequest req, int max) {
         List<DocDescriptor> ret = new ArrayList<>();
         SearchToDocComparator comparator = new SearchToDocComparator();
 
         Iterator<DocDescriptor> it = docs.iterator();
-        while ( it.hasNext() ) {
+        while (it.hasNext()) {
             DocDescriptor descriptor = it.next();
-            if ( descriptor.getDocumentUrl() == null) {
+            if (descriptor.getDocumentUrl() == null) {
                 // assume index used is not projected
                 // this will ramp up required read capacity
-                descriptor = mapper.load(DocDescriptor.class,descriptor.getId());
+                descriptor = mapper.load(DocDescriptor.class, descriptor.getId());
             }
-            if ( comparator.matchesQuery(descriptor,req)) {
+            if (comparator.matchesQuery(descriptor, req)) {
                 ret.add(descriptor);
             }
 
-            if ( ret.size() == max) {
+            if (ret.size() == max) {
                 break;
             }
         }
@@ -121,7 +130,7 @@ public class DocService extends AbstractDynamoBackedService {
         PaginatedQueryList<DocDescriptor> docs = mapper.query(DocDescriptor.class, queryExpression, mapperConfig);
 
 
-        List<DocDescriptor> ret = filterAndLimit(docs,req,1000);
+        List<DocDescriptor> ret = filterAndLimit(docs, req, 1000);
 
         return ret;
     }
