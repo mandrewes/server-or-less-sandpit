@@ -93,12 +93,18 @@ public class DocService extends AbstractDynamoBackedService {
         HashMap<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
 
         // use best filter - since we are not in SQL we need to have our own query plan
-
-        if (StringUtils.isNotBlank(req.getGroupId())) {
+        if (StringUtils.isNotBlank(req.getAccountId())) {
+            eav.put(":v1", new AttributeValue().withS(req.getAccountId()));
+            queryExpression.withIndexName("AccountIndex");
+            queryExpression.withKeyConditionExpression("accountId = :v1");
+        } else if (StringUtils.isNotBlank(req.getCustomerId())) {
+            eav.put(":v1", new AttributeValue().withS(req.getCustomerId()));
+            queryExpression.withIndexName("CustomerIndex");
+            queryExpression.withKeyConditionExpression("customerId = :v1");
+        } else if (StringUtils.isNotBlank(req.getGroupId())) {
             eav.put(":v1", new AttributeValue().withS(req.getGroupId()));
             queryExpression.withIndexName("GroupIndex");
             queryExpression.withKeyConditionExpression("groupId = :v1");
-//            queryExpression.withKeyConditionExpression("PostedBy = :v1 and begins_with(Message, :v2)");
         } else if (StringUtils.isNotBlank(req.getFolder())) {
             eav.put(":v1", new AttributeValue().withS(req.getFolder()));
             queryExpression.withIndexName("FolderIndex");
@@ -106,6 +112,8 @@ public class DocService extends AbstractDynamoBackedService {
         } else {
             throw new RuntimeException("Could not determine index to use");
         }
+
+        //            queryExpression.withFilter("PostedBy = :v1 and begins_with(Message, :v2)");
 
         queryExpression.withConsistentRead(false)
                 .withExpressionAttributeValues(eav);

@@ -7,6 +7,7 @@ public class SearchRequest {
     private String folder;
     private String groupId;
     private String customerId;
+    private String accountId;
     private String path;
     private Map<String,String> freeForm;
 
@@ -48,5 +49,13 @@ public class SearchRequest {
 
     public void setFolder(String folder) {
         this.folder = folder;
+    }
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 }
