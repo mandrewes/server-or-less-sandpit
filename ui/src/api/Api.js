@@ -1,6 +1,4 @@
-//import React, { Component } from 'react';
 import Config from '../config';
-import Logger from '../services/Logger'
 import axios from 'axios';
 import { toast } from 'react-toastify';
 

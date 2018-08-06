@@ -65,6 +65,7 @@ public class DocService extends AbstractDynamoBackedService {
                 && StringUtils.isBlank(req.getGroupId())
                 && StringUtils.isBlank(req.getPath())
                 && StringUtils.isBlank(req.getFolder())
+                && StringUtils.isBlank(req.getAccountId())
                 ) {
             throw new RuntimeException("You must specify at least one indexed query field");
         }
