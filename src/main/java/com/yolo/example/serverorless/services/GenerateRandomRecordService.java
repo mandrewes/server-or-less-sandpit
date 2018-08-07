@@ -110,13 +110,12 @@ public class GenerateRandomRecordService extends AbstractDynamoBackedService {
 
             d.setFolder(folder);
 
-
             rec.submit("folders", d.getFolder());
             // use pdc as detail
-            d.setGroupId(pdc.getSampleId());
+            d.setGroupId(pdc.getSampleId() + "-" + i);
             d.setAccountId(pdc.getSampleId() + hourMinSec.format(now));
             d.setFileName(pdc.getSampleId() + "-" + i + ".txt");
-            d.setCustomerId(pdc.getSampleId());
+            d.setCustomerId("cust-" + d.getGroupId());
 
             rec.submit("groupId", d.getGroupId());
 
