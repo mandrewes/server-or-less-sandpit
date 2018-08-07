@@ -95,7 +95,13 @@ public class GenerateRandomRecordService extends AbstractDynamoBackedService {
 
         Timer t = Metrics.timer(GenerateRandomRecordService.class, "batchSave");
 
+        String rv = RandomUtil.getRandomString(8);
+
         for (int i = 0; i < n; i++) {
+
+            if ( i % 50 == 0) {
+                rv = RandomUtil.getRandomString(8);
+            }
 
             Timer.Context c = t.time();
 
@@ -112,8 +118,8 @@ public class GenerateRandomRecordService extends AbstractDynamoBackedService {
 
             rec.submit("folders", d.getFolder());
             // use pdc as detail
-            d.setGroupId(pdc.getSampleId() + "-" + i);
-            d.setAccountId(pdc.getSampleId() + hourMinSec.format(now));
+            d.setGroupId(pdc.getSampleId() + "-" + rv);
+            d.setAccountId(pdc.getSampleId() + hourMinSec.format(now) + rv);
             d.setFileName(pdc.getSampleId() + "-" + i + ".txt");
             d.setCustomerId("cust-" + d.getGroupId());
 
@@ -128,6 +134,7 @@ public class GenerateRandomRecordService extends AbstractDynamoBackedService {
             d.getFreeFormMetadata().put("lab", pdc.getLaboratory());
             d.getFreeFormMetadata().put("high_level_category", pdc.getCommodity());
             d.getFreeFormMetadata().put("low_level_category", pdc.getConcentration());
+            d.getFreeFormMetadata().put("rand", RandomUtil.getRandomString(8));
 
 
             // fill in extra data
