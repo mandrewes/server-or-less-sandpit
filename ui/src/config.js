@@ -8,7 +8,7 @@ if (/localhost/.test(window.location.href)) {
     };
 }
 
-if (/dev-www/.test(window.location.href)) {
+if (/poc/.test(window.location.href)) {
     cfg =  {
         api: 'https://poclb.testnix.com',
         env: 'DEV'
