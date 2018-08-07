@@ -55,7 +55,7 @@ public class GenerateRandomRecordService extends AbstractDynamoBackedService {
         executor = Executors.newFixedThreadPool(20);
     }
 
-    public CollectionStatistics generateConcurrently(int numJobs, final int sizePerJob, long throttleA, long throttleB) {
+    public CollectionStatistics generateConcurrently(int numJobs, final int sizePerJob, long throttleA, long throttleB, String tag) {
         for (int i = 0; i < numJobs; i++) {
             final int j = i;
 
@@ -65,7 +65,7 @@ public class GenerateRandomRecordService extends AbstractDynamoBackedService {
                     try {
                         ThreadUtil.doSleep(throttleA);
                         LOG.info("Job " + j + " inserting " + sizePerJob + " items");
-                        generateNRandomDescriptors(sizePerJob, "Job " + j, throttleB);
+                        generateNRandomDescriptors(sizePerJob, "Job " + j, throttleB, tag);
                         LOG.info("Job " + j + " done " + sizePerJob);
                     } catch (Exception ex) {
                         LOG.warn("Job " + j + " " + ex.getMessage(), ex);
@@ -79,7 +79,7 @@ public class GenerateRandomRecordService extends AbstractDynamoBackedService {
 
     }
 
-    public CollectionStatistics generateNRandomDescriptors(int n, String name, long throttleB) {
+    public CollectionStatistics generateNRandomDescriptors(int n, String name, long throttleB, String tag) {
         int batchSize = 25;
 
         CollectionStatsRecorder rec = new CollectionStatsRecorder();
@@ -135,7 +135,7 @@ public class GenerateRandomRecordService extends AbstractDynamoBackedService {
             d.getFreeFormMetadata().put("high_level_category", pdc.getCommodity());
             d.getFreeFormMetadata().put("low_level_category", pdc.getConcentration());
             d.getFreeFormMetadata().put("rand", RandomUtil.getRandomString(8));
-
+            d.getFreeFormMetadata().put("tag",tag);
 
             // fill in extra data
             d.setMimeType("text/plain");

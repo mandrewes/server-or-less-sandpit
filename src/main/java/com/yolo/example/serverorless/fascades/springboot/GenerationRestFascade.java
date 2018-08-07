@@ -22,9 +22,9 @@ public class GenerationRestFascade {
 
     @RequestMapping(value = "/docs/generate", method = RequestMethod.POST)
     @ResponseBody
-    public CollectionStatistics generateNDocs(@RequestParam("n") int n) {
+    public CollectionStatistics generateNDocs(@RequestParam("n") int n , @RequestParam(name = "tag", defaultValue = "none") String tag) {
 
-        CollectionStatistics ret = genService.generateNRandomDescriptors(n, "single", 0);
+        CollectionStatistics ret = genService.generateNRandomDescriptors(n, "single", 0, tag);
 
         return ret;
     }
@@ -35,9 +35,10 @@ public class GenerationRestFascade {
             , @RequestParam("jobSize") int jobSize
             , @RequestParam("throttleA") int throttleA
             , @RequestParam("throttleB") int throttleB
+            , @RequestParam(name = "tag", defaultValue = "none") String tag
     ) {
 
-        CollectionStatistics ret = genService.generateConcurrently(jobs, jobSize, throttleA, throttleB);
+        CollectionStatistics ret = genService.generateConcurrently(jobs, jobSize, throttleA, throttleB, tag);
 
         return ret;
     }
