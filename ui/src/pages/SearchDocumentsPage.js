@@ -29,8 +29,10 @@ export default class SearchDocumentsPage extends Component {
             folder: "",
             customerId: "",
             accountId: "TX1210150419AJWA100-36-56",
-            freeFormName: "",
-            freeFormValue: "",
+            freeFormNameA: "",
+            freeFormValueA: "",
+            freeFormNameB: "",
+            freeFormValueB: "",
             results: [],
             resultsInfo: null
         };
@@ -73,8 +75,14 @@ export default class SearchDocumentsPage extends Component {
         this.addCriteria(ret,"folder");
 
         ret.freeForm = {};
-        var n = this.state.freeFormName;
-        var v = this.state.freeFormValue;
+        var n = this.state.freeFormNameA;
+        var v = this.state.freeFormValueA;
+        if ( n && n.length > 0) {
+            ret.freeForm[n] = v;
+        }
+
+        n = this.state.freeFormNameB;
+        v = this.state.freeFormValueB;
         if ( n && n.length > 0) {
             ret.freeForm[n] = v;
         }
@@ -170,13 +178,26 @@ export default class SearchDocumentsPage extends Component {
                         <FormGroup row>
                           <Label for="freeFormName" sm={2}>Free Form Name</Label>
                           <Col sm={10}>
-                            <Input name="freeFormName" id="freeFormName" bsSize="sm" value={this.state.freeFormName} onChange={this.updateInputValue}/>
+                            <Input name="freeFormNameA" id="freeFormNameA" bsSize="sm" value={this.state.freeFormNameA} onChange={this.updateInputValue}/>
                           </Col>
                         </FormGroup>
                         <FormGroup row>
                           <Label for="freeFormValue" sm={2}>Free Form Value</Label>
                           <Col sm={10}>
-                            <Input name="freeFormValue" id="freeFormValue" bsSize="sm" value={this.state.freeFormValue} onChange={this.updateInputValue}/>
+                            <Input name="freeFormValueA" id="freeFormValueA" bsSize="sm" value={this.state.freeFormValueA} onChange={this.updateInputValue}/>
+                          </Col>
+                        </FormGroup>
+                        <hr/>
+                        <FormGroup row>
+                          <Label for="freeFormNameB" sm={2}>Free Form Name</Label>
+                          <Col sm={10}>
+                            <Input name="freeFormNameB" id="freeFormNameB" bsSize="sm" value={this.state.freeFormNameB} onChange={this.updateInputValue}/>
+                          </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                          <Label for="freeFormValueB" sm={2}>Free Form Value</Label>
+                          <Col sm={10}>
+                            <Input name="freeFormValueB" id="freeFormValueB" bsSize="sm" value={this.state.freeFormValueB} onChange={this.updateInputValue}/>
                           </Col>
                         </FormGroup>
                       </Form>

@@ -23,8 +23,7 @@
     "start": "cross-env PORT=3000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "deploy": "s3-easy-deploy --public-root ./build --bucket dev-www.wodger.com.au"
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
     "cross-env": "^5.2.0",
