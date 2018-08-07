@@ -159,6 +159,9 @@ public class GenerateRandomRecordService extends AbstractDynamoBackedService {
             if (i % 1000 == 0) {
                 LOG.info("Generator " + name + " is " + i + " items through " + n);
             }
+            if ( i == 0) {
+                LOG.info("First Entry " + d.toString());
+            }
             c.stop();
 
         }
