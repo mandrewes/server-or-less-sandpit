@@ -10,7 +10,7 @@ class Api {
             .then(function(response) {
                 _cb(response)
             }).catch(function (error) {
-                Logger.error(error);
+                console.log(error);
                 if ( _err ) {
                     _err(error);
                     return;
@@ -35,7 +35,7 @@ class Api {
                 if ( _err ) {
                     _err(error);
                 }
-              Logger.error(error);
+                console.log(error);
               toast.error(r => "Error " + error )
             });
   }

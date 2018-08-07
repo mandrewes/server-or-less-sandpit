@@ -4,6 +4,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import com.amazonaws.services.dynamodbv2.model.*;
 import com.yolo.example.serverorless.model.DocDescriptor;
 import com.yolo.example.serverorless.model.SearchRequest;
+import com.yolo.example.serverorless.model.SearchResult;
 import com.yolo.example.serverorless.utils.AbstractDynamoBackedService;
 import com.yolo.example.serverorless.utils.SearchToDocComparator;
 import org.apache.commons.lang3.StringUtils;
@@ -63,7 +64,6 @@ public class DocService extends AbstractDynamoBackedService {
     private void validateSearchRequest(SearchRequest req) {
         if (StringUtils.isBlank(req.getCustomerId())
                 && StringUtils.isBlank(req.getGroupId())
-                && StringUtils.isBlank(req.getPath())
                 && StringUtils.isBlank(req.getFolder())
                 && StringUtils.isBlank(req.getAccountId())
                 ) {
@@ -95,12 +95,13 @@ public class DocService extends AbstractDynamoBackedService {
         return ret;
     }
 
-    public List<DocDescriptor> searchDocuments(SearchRequest req) {
-        // document high/medium/low category
-        validateSearchRequest(req);
+    public SearchResult searchDocuments(SearchRequest req) {
+        long start = System.currentTimeMillis();
 
+        validateSearchRequest(req);
         DynamoDBQueryExpression<DocDescriptor> queryExpression = new DynamoDBQueryExpression<DocDescriptor>();
         HashMap<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
+        String indexUsed = "none";
 
         // use best filter - since we are not in SQL we need to have our own query plan
         if (StringUtils.isNotBlank(req.getAccountId())) {
@@ -122,8 +123,10 @@ public class DocService extends AbstractDynamoBackedService {
         } else {
             throw new RuntimeException("Could not determine index to use");
         }
+        SearchResult ret = new SearchResult();
 
-        //            queryExpression.withFilter("PostedBy = :v1 and begins_with(Message, :v2)");
+        ret.setIndexUsed(queryExpression.getIndexName());
+        //queryExpression.withFilter("PostedBy = :v1 and begins_with(Message, :v2)");
 
         queryExpression.withConsistentRead(false)
                 .withExpressionAttributeValues(eav);
@@ -131,8 +134,18 @@ public class DocService extends AbstractDynamoBackedService {
         PaginatedQueryList<DocDescriptor> docs = mapper.query(DocDescriptor.class, queryExpression, mapperConfig);
 
 
-        List<DocDescriptor> ret = filterAndLimit(docs, req, 1000);
+        int max = 100;
+        List<DocDescriptor> filtered = filterAndLimit(docs, req, max);
 
+        long end = System.currentTimeMillis();
+        ret.setTimeTaken(end-start);
+        ret.setResults(filtered);
+        if ( filtered.size() == max) {
+            ret.setLimitedAt(max);
+        } else {
+            ret.setLimitedAt(-1);
+        }
+        ret.setResultsReturned(filtered.size());
         return ret;
     }
 }

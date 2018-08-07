@@ -8,7 +8,6 @@ public class SearchRequest {
     private String groupId;
     private String customerId;
     private String accountId;
-    private String path;
     private Map<String,String> freeForm;
 
     public String getGroupId() {
@@ -25,14 +24,6 @@ public class SearchRequest {
 
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
     }
 
     public Map<String, String> getFreeForm() {

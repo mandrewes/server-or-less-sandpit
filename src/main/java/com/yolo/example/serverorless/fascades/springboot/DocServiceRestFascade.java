@@ -1,10 +1,9 @@
 package com.yolo.example.serverorless.fascades.springboot;
 
-import com.yolo.example.serverorless.model.CollectionStatistics;
 import com.yolo.example.serverorless.model.DocDescriptor;
 import com.yolo.example.serverorless.model.SearchRequest;
+import com.yolo.example.serverorless.model.SearchResult;
 import com.yolo.example.serverorless.services.DocService;
-import com.yolo.example.serverorless.services.GenerateRandomRecordService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -16,6 +15,7 @@ import java.util.List;
 
 @Controller
 @EnableAutoConfiguration
+@CrossOrigin(origins = {"http://localhost:3000"}, maxAge = 4800, allowCredentials = "true")
 public class DocServiceRestFascade {
 
     private static final Logger LOG = Logger.getLogger(DocServiceRestFascade.class);
@@ -40,8 +40,8 @@ public class DocServiceRestFascade {
 
     @RequestMapping(value = "/docs/search", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
-    public List<DocDescriptor> searchDocs(@RequestBody SearchRequest req) {
-        List<DocDescriptor> ret = docService.searchDocuments(req);
+    public SearchResult searchDocs(@RequestBody SearchRequest req) {
+        SearchResult ret = docService.searchDocuments(req);
         return ret;
     }
 
