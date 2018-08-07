@@ -15,4 +15,5 @@ if (/poc/.test(window.location.href)) {
     };
 }
 
+console.log("cfg is " + JSON.stringify(cfg,0,4))
 export default ( cfg );
