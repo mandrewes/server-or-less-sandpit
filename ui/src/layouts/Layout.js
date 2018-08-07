@@ -34,13 +34,9 @@ export default class BaseLayout extends Component {
       return (
               <div>
                 <ToastContainer/>
-                <Jumbotron>
-                    <Container>
-                        <Row>
-                            {this.props.body}
-                        </Row>
-                    </Container>
-                </Jumbotron>
+                <Container>
+                    {this.props.body}
+                </Container>
             </div>
       );
     }

@@ -16,6 +16,9 @@ public class SearchToDocComparator {
                     String sV = srch.getFreeForm().get(k);
                     if (dV.equals(sV)) {
                         ffScore++;
+                    } else {
+                        ffScore = 0;
+                        break;
                     }
                 }
             }

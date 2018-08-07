@@ -7,6 +7,7 @@ import java.util.List;
  */
 public class SearchResult {
     private long timeTaken;
+    private int rowsProcessed;
 //    private int totalMatches;
     private int resultsReturned;
     private int limitedAt;
@@ -51,5 +52,13 @@ public class SearchResult {
 
     public void setResults(List<DocDescriptor> results) {
         this.results = results;
+    }
+
+    public int getRowsProcessed() {
+        return rowsProcessed;
+    }
+
+    public void setRowsProcessed(int rowsProcessed) {
+        this.rowsProcessed = rowsProcessed;
     }
 }

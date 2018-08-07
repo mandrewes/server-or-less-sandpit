@@ -14,6 +14,7 @@ import tech.rsqn.useful.things.metrics.Metrics;
 import javax.annotation.PostConstruct;
 import javax.print.Doc;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Component
@@ -78,7 +79,7 @@ public class DocService extends AbstractDynamoBackedService {
     }
 
 
-    public List<DocDescriptor> filterAndLimit(PaginatedQueryList<DocDescriptor> docs, SearchRequest req, int max) {
+    public List<DocDescriptor> filterAndLimit(AtomicInteger ctr, PaginatedQueryList<DocDescriptor> docs, SearchRequest req, int max) {
         List<DocDescriptor> ret = new ArrayList<>();
         SearchToDocComparator comparator = new SearchToDocComparator();
 
@@ -93,6 +94,8 @@ public class DocService extends AbstractDynamoBackedService {
             if (comparator.matchesQuery(descriptor, req)) {
                 ret.add(descriptor);
             }
+
+            ctr.incrementAndGet();
 
             if (ret.size() == max) {
                 break;
@@ -143,10 +146,13 @@ public class DocService extends AbstractDynamoBackedService {
 
 
         int max = 100;
-        List<DocDescriptor> filtered = filterAndLimit(docs, req, max);
+        AtomicInteger ctr = new AtomicInteger(0);
+
+        List<DocDescriptor> filtered = filterAndLimit(ctr, docs, req, max);
 
         long end = System.currentTimeMillis();
         ret.setTimeTaken(end-start);
+        ret.setRowsProcessed(ctr.get());
         ret.setResults(filtered);
         if ( filtered.size() == max) {
             ret.setLimitedAt(max);

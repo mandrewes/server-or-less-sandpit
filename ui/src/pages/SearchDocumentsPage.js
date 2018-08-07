@@ -23,7 +23,7 @@ export default class SearchDocumentsPage extends Component {
    constructor(props) {
         super(props);
         this.state = {
-            loading: true,
+            loading: false,
             search: null,
             groupId: "NY1307090142SSCA1",
             folder: "",
@@ -44,7 +44,7 @@ export default class SearchDocumentsPage extends Component {
     }
 
     componentDidMount() {
-        this.onSearchButtonClick();
+        //this.onSearchButtonClick();
     }
 
     updateInputValue(evt){
@@ -147,64 +147,69 @@ export default class SearchDocumentsPage extends Component {
             title="Search"
             body={
             <Row>
-                <Col xs="4">
-                    <p>Search</p>
+                <Col xs="3" className={["panel","search"]}>
+                      <h2 class="h3">Search</h2>
                       <Form onSubmit={this.handleSubmit}>
                         <FormGroup row>
-                          <Label for="accountId" sm={2}>Account ID</Label>
-                          <Col sm={10}>
+                          <Label for="accountId" sm={3}>Account ID</Label>
+                          <Col sm={8}>
                             <Input name="accountId" id="accountId" bsSize="sm" value={this.state.accountId} onChange={this.updateInputValue}/>
                           </Col>
                         </FormGroup>
                         <FormGroup row>
-                          <Label for="groupId" sm={2}>Group ID</Label>
-                          <Col sm={10}>
+                          <Label for="groupId" sm={3}>Group ID</Label>
+                          <Col sm={8}>
                             <Input name="groupId" id="groupId" bsSize="sm" value={this.state.groupId} onChange={this.updateInputValue}/>
                           </Col>
                         </FormGroup>
                         <FormGroup row>
-                          <Label for="customerId" sm={2}>Customer ID</Label>
-                          <Col sm={10}>
+                          <Label for="customerId" sm={3}>Customer ID</Label>
+                          <Col sm={8}>
                             <Input name="customerId" id="customerId" bsSize="sm" value={this.state.customerId} onChange={this.updateInputValue}/>
                           </Col>
                         </FormGroup>
                         <FormGroup row>
-                          <Label for="folder" sm={2}>Folder</Label>
-                          <Col sm={10}>
+                          <Label for="folder" sm={3}>Folder</Label>
+                          <Col sm={8}>
                             <Input name="folder" id="folder" bsSize="sm" value={this.state.folder} onChange={this.updateInputValue}/>
                           </Col>
                         </FormGroup>
                         <hr/>
+                        <Row>
+                            <Col>
+                                <h3 class="h3">Free Form Fields</h3>
+                                <p>Free form fields. There can be as many as needed</p>
+                            </Col>
+                        </Row>
                         <FormGroup row>
-                          <Label for="freeFormName" sm={2}>Free Form Name</Label>
-                          <Col sm={10}>
+                          <Label for="freeFormName" sm={3}>Name</Label>
+                          <Col sm={8}>
                             <Input name="freeFormNameA" id="freeFormNameA" bsSize="sm" value={this.state.freeFormNameA} onChange={this.updateInputValue}/>
                           </Col>
                         </FormGroup>
                         <FormGroup row>
-                          <Label for="freeFormValue" sm={2}>Free Form Value</Label>
-                          <Col sm={10}>
+                          <Label for="freeFormValue" sm={3}>Value</Label>
+                          <Col sm={8}>
                             <Input name="freeFormValueA" id="freeFormValueA" bsSize="sm" value={this.state.freeFormValueA} onChange={this.updateInputValue}/>
                           </Col>
                         </FormGroup>
-                        <hr/>
                         <FormGroup row>
-                          <Label for="freeFormNameB" sm={2}>Free Form Name</Label>
-                          <Col sm={10}>
+                          <Label for="freeFormNameB" sm={3}>Name</Label>
+                          <Col sm={8}>
                             <Input name="freeFormNameB" id="freeFormNameB" bsSize="sm" value={this.state.freeFormNameB} onChange={this.updateInputValue}/>
                           </Col>
                         </FormGroup>
                         <FormGroup row>
-                          <Label for="freeFormValueB" sm={2}>Free Form Value</Label>
-                          <Col sm={10}>
+                          <Label for="freeFormValueB" sm={3}>Value</Label>
+                          <Col sm={8}>
                             <Input name="freeFormValueB" id="freeFormValueB" bsSize="sm" value={this.state.freeFormValueB} onChange={this.updateInputValue}/>
                           </Col>
                         </FormGroup>
                       </Form>
                     <Button color="primary" onClick={self.onSearchButtonClick} >Search</Button>
                 </Col>
-                <Col xs="8">
-                     <p>Results</p>
+                <Col xs="8" className={["panel","results"]}>
+                     <h2 class="h3">Results</h2>
                      <Spinner loading={this.state.loading}/>
                      <ResultsHeader resultsInfo={this.state.resultsInfo}/>
                      <ResultsList results={this.state.results}/>
