@@ -21,6 +21,7 @@ class Api {
 
   post(uri,body,_cb,_err) {
         var url = Config.api + uri;
+        console.log("Config.api is " + Config.api)
         axios.post(
             url,
             body,
