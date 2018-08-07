@@ -12,20 +12,16 @@ export default class DocResult extends Component {
 
     render() {
         return (
-            <Row>
-              <Col xs="2">
-                ID: {this.state.id}
+            <Row className="resultRow">
+                <Col xs="10">
+                <ul>
+                    <li><span className="fieldName">Folder</span>{this.state.folder}</li>
+                    <li><span className="fieldName">Group</span>{this.state.groupId}</li>
+                    <li><span className="fieldName">Account</span>{this.state.accountId}</li>
+                    <li><span className="fieldName">File</span>{this.state.fileName}</li>
+                </ul>
               </Col>
               <Col xs="2">
-                File: {this.state.fileName}
-              </Col>
-              <Col xs="2">
-                Group: {this.state.groupId}
-              </Col>
-              <Col xs="2">
-                Folder: {this.state.folder}
-              </Col>
-               <Col xs="2">
                 <DocModal meta={this.state}/>
               </Col>
             </Row>

@@ -37,8 +37,11 @@ class Api {
                     _err(error);
                 }
                 console.log(error);
-//                {"timestamp":"2018-08-07T02:02:35.202+0000","status":500,"error":"Internal Server Error","message":"You must specify at least one indexed query field","path":"/docs/search"}
-              toast.error(r => "Error " + error )
+                if ( error.response && error.response.data && error.response.data.message ) {
+                    toast.warn(r => error.response.data.message );
+                } else {
+                    toast.error(r => "Error " + error );
+                }
             });
   }
 }

@@ -3,6 +3,8 @@ import Config from '../config';
 import Api from '../api/Api'
 import Spinner from '../components/Spinner'
 import DocResult from '../components/DocResult'
+import SearchStats from '../components/SearchStats'
+import TableStats from '../components/TableStats'
 
 import {
     NavItem,
@@ -25,7 +27,7 @@ export default class SearchDocumentsPage extends Component {
         this.state = {
             loading: false,
             search: null,
-            groupId: "NY1307090142SSCA1",
+            groupId: "",
             folder: "",
             customerId: "",
             accountId: "TX1210150419AJWA100-36-56",
@@ -44,7 +46,7 @@ export default class SearchDocumentsPage extends Component {
     }
 
     componentDidMount() {
-        //this.onSearchButtonClick();
+        this.onSearchButtonClick();
     }
 
     updateInputValue(evt){
@@ -119,36 +121,30 @@ export default class SearchDocumentsPage extends Component {
                 <DocResult meta={item}/>
             );
             return (
-                <Row>
+                <Col xs="12">
                   {items}
-                </Row>
+                </Col>
             );
         }
-        function ResultsHeader(props) {
-            var resultsInfo = props.resultsInfo;
-            if ( ! resultsInfo ) {
-                return null;
-            }
 
-            return (
-                <Row>
-                  <Col xs="12">
-                    timeTaken: {resultsInfo.timeTaken}ms <br/>
-                    resultsReturned: {resultsInfo.resultsReturned} rows <br/>
-                    limitedAt: {resultsInfo.limitedAt} rows <br/>
-                    indexUsed : {resultsInfo.indexUsed}.
-
-                  </Col>
-                </Row>
-            );
-        }
       return (
         <BaseLayout
             title="Search"
             body={
+            <div>
+            <Row>
+            <Col>
+            <p>Please visit these URLs and click continue in zScaler if you are getting errors
+                <ul>
+                    <li><a href={Config.api + "/docs/search"}>{Config.api + "/docs/search"}</a></li>
+                    <li><a href={Config.api + "/docs/stats"}>{Config.api + "/docs/stats"}</a></li>
+                </ul>
+            </p>
+            </Col>
+            </Row>
             <Row>
                 <Col xs="3" className={["panel","search"]}>
-                      <h2 class="h3">Search</h2>
+                      <h2 className="h3">Search</h2>
                       <Form onSubmit={this.handleSubmit}>
                         <FormGroup row>
                           <Label for="accountId" sm={3}>Account ID</Label>
@@ -207,14 +203,24 @@ export default class SearchDocumentsPage extends Component {
                         </FormGroup>
                       </Form>
                     <Button color="primary" onClick={self.onSearchButtonClick} >Search</Button>
+                    <hr/>
+                    <TableStats/>
                 </Col>
                 <Col xs="8" className={["panel","results"]}>
-                     <h2 class="h3">Results</h2>
-                     <Spinner loading={this.state.loading}/>
-                     <ResultsHeader resultsInfo={this.state.resultsInfo}/>
+                    <Row className="resultsHdr">
+                        <Col xs="4">
+                             <h2 class="h3">Results</h2>
+                        </Col>
+                        <Col xs="8" className="text-right">
+                            <Spinner loading={this.state.loading}/>
+                            <SearchStats resultsInfo={this.state.resultsInfo}/>
+                        </Col>
+                    </Row>
+
                      <ResultsList results={this.state.results}/>
                 </Col>
                 </Row>
+                </div>
             }
         />
       );

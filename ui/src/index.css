@@ -28,6 +28,28 @@ body {
     margin-bottom: 0px;
 }
 
+.resultsHdr {
+    margin-bottom: 2em;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.stats {
+    margin-right: 1em;
+}
+
+.fieldName {
+    margin-right: 1em;
+}
+
+.resultRow {
+    margin-bottom: 0.5em;
+}
+
 .results {
    background-color: #eeeeee;
 }

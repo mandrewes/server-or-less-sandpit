@@ -1,0 +1,168 @@
+{
+  "sdkResponseMetadata": {
+    "requestId": "OR2Q38D2ENJOJA7I8NPNTTROL7VV4KQNSO5AEMVJF66Q9ASUAAJG"
+  },
+  "sdkHttpMetadata": {
+    "httpHeaders": {
+      "Connection": "keep-alive",
+      "Content-Length": "2724",
+      "Content-Type": "application/x-amz-json-1.0",
+      "Date": "Tue, 07 Aug 2018 05:58:46 GMT",
+      "Server": "Server",
+      "x-amz-crc32": "2851741632",
+      "x-amzn-RequestId": "OR2Q38D2ENJOJA7I8NPNTTROL7VV4KQNSO5AEMVJF66Q9ASUAAJG"
+    },
+    "httpStatusCode": 200
+  },
+  "table": {
+    "attributeDefinitions": [
+      {
+        "attributeName": "accountId",
+        "attributeType": "S"
+      },
+      {
+        "attributeName": "customerId",
+        "attributeType": "S"
+      },
+      {
+        "attributeName": "folder",
+        "attributeType": "S"
+      },
+      {
+        "attributeName": "groupId",
+        "attributeType": "S"
+      },
+      {
+        "attributeName": "id",
+        "attributeType": "S"
+      }
+    ],
+    "tableName": "DocumentDescriptor",
+    "keySchema": [
+      {
+        "attributeName": "id",
+        "keyType": "HASH"
+      }
+    ],
+    "tableStatus": "ACTIVE",
+    "creationDateTime": "2018-08-03T23:59:08.558+0000",
+    "provisionedThroughput": {
+      "lastIncreaseDateTime": "2018-08-06T04:13:22.345+0000",
+      "lastDecreaseDateTime": "2018-08-06T06:31:26.940+0000",
+      "numberOfDecreasesToday": 0,
+      "readCapacityUnits": 10,
+      "writeCapacityUnits": 5
+    },
+    "tableSizeBytes": 5718384586,
+    "itemCount": 11204055,
+    "tableArn": "arn:aws:dynamodb:ap-southeast-2:196955943663:table/DocumentDescriptor",
+    "tableId": "959808fe-bfcb-44fa-b513-12d1d38f450d",
+    "localSecondaryIndexes": null,
+    "globalSecondaryIndexes": [
+      {
+        "indexName": "AccountIndex",
+        "keySchema": [
+          {
+            "attributeName": "accountId",
+            "keyType": "HASH"
+          }
+        ],
+        "projection": {
+          "projectionType": "ALL",
+          "nonKeyAttributes": null
+        },
+        "indexStatus": "ACTIVE",
+        "backfilling": null,
+        "provisionedThroughput": {
+          "lastIncreaseDateTime": "2018-08-06T04:09:05.984+0000",
+          "lastDecreaseDateTime": "2018-08-06T06:31:26.948+0000",
+          "numberOfDecreasesToday": 0,
+          "readCapacityUnits": 10,
+          "writeCapacityUnits": 5
+        },
+        "indexSizeBytes": 5718384586,
+        "itemCount": 11204055,
+        "indexArn": "arn:aws:dynamodb:ap-southeast-2:196955943663:table/DocumentDescriptor/index/AccountIndex"
+      },
+      {
+        "indexName": "CustomerIndex",
+        "keySchema": [
+          {
+            "attributeName": "customerId",
+            "keyType": "HASH"
+          }
+        ],
+        "projection": {
+          "projectionType": "ALL",
+          "nonKeyAttributes": null
+        },
+        "indexStatus": "ACTIVE",
+        "backfilling": null,
+        "provisionedThroughput": {
+          "lastIncreaseDateTime": "2018-08-06T04:09:05.977+0000",
+          "lastDecreaseDateTime": "2018-08-06T06:31:25.936+0000",
+          "numberOfDecreasesToday": 0,
+          "readCapacityUnits": 10,
+          "writeCapacityUnits": 5
+        },
+        "indexSizeBytes": 5718384586,
+        "itemCount": 11204055,
+        "indexArn": "arn:aws:dynamodb:ap-southeast-2:196955943663:table/DocumentDescriptor/index/CustomerIndex"
+      },
+      {
+        "indexName": "GroupIndex",
+        "keySchema": [
+          {
+            "attributeName": "groupId",
+            "keyType": "HASH"
+          }
+        ],
+        "projection": {
+          "projectionType": "ALL",
+          "nonKeyAttributes": null
+        },
+        "indexStatus": "ACTIVE",
+        "backfilling": null,
+        "provisionedThroughput": {
+          "lastIncreaseDateTime": "2018-08-07T01:58:26.227+0000",
+          "lastDecreaseDateTime": "2018-08-07T03:41:50.454+0000",
+          "numberOfDecreasesToday": 1,
+          "readCapacityUnits": 100,
+          "writeCapacityUnits": 5
+        },
+        "indexSizeBytes": 5718384586,
+        "itemCount": 11204055,
+        "indexArn": "arn:aws:dynamodb:ap-southeast-2:196955943663:table/DocumentDescriptor/index/GroupIndex"
+      },
+      {
+        "indexName": "FolderIndex",
+        "keySchema": [
+          {
+            "attributeName": "folder",
+            "keyType": "HASH"
+          }
+        ],
+        "projection": {
+          "projectionType": "ALL",
+          "nonKeyAttributes": null
+        },
+        "indexStatus": "ACTIVE",
+        "backfilling": null,
+        "provisionedThroughput": {
+          "lastIncreaseDateTime": "2018-08-06T04:09:05.977+0000",
+          "lastDecreaseDateTime": "2018-08-06T06:31:26.939+0000",
+          "numberOfDecreasesToday": 0,
+          "readCapacityUnits": 10,
+          "writeCapacityUnits": 5
+        },
+        "indexSizeBytes": 5718384586,
+        "itemCount": 11204055,
+        "indexArn": "arn:aws:dynamodb:ap-southeast-2:196955943663:table/DocumentDescriptor/index/FolderIndex"
+      }
+    ],
+    "streamSpecification": null,
+    "latestStreamLabel": null,
+    "latestStreamArn": null,
+    "restoreSummary": null
+  }
+}
