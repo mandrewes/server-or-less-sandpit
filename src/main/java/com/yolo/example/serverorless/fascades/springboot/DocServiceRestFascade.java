@@ -1,5 +1,6 @@
 package com.yolo.example.serverorless.fascades.springboot;
 
+import com.amazonaws.services.dynamodbv2.model.DescribeTableResult;
 import com.yolo.example.serverorless.model.DocDescriptor;
 import com.yolo.example.serverorless.model.SearchRequest;
 import com.yolo.example.serverorless.model.SearchResult;
@@ -45,5 +46,11 @@ public class DocServiceRestFascade {
         return ret;
     }
 
+    @RequestMapping(value = "/docs/stats", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public DescribeTableResult getStats() {
+        DescribeTableResult ret = docService.getTableInformation();
+        return ret;
+    }
 
 }

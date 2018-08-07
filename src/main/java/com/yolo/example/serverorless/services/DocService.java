@@ -61,6 +61,12 @@ public class DocService extends AbstractDynamoBackedService {
         return ret;
     }
 
+
+    public DescribeTableResult getTableInformation() {
+        DescribeTableResult r = dynamodb.describeTable(DocService.TMP_TABLE_NAME);
+        return r;
+    }
+
     private void validateSearchRequest(SearchRequest req) {
         if (StringUtils.isBlank(req.getCustomerId())
                 && StringUtils.isBlank(req.getGroupId())
@@ -97,6 +103,8 @@ public class DocService extends AbstractDynamoBackedService {
 
     public SearchResult searchDocuments(SearchRequest req) {
         long start = System.currentTimeMillis();
+
+        getTableInformation();
 
         validateSearchRequest(req);
         DynamoDBQueryExpression<DocDescriptor> queryExpression = new DynamoDBQueryExpression<DocDescriptor>();
