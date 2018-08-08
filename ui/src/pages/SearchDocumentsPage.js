@@ -5,6 +5,7 @@ import Spinner from '../components/Spinner'
 import DocResult from '../components/DocResult'
 import SearchStats from '../components/SearchStats'
 import TableStats from '../components/TableStats'
+import IntroductionPanel from '../components/IntroductionPanel'
 
 import {
     NavItem,
@@ -132,16 +133,7 @@ export default class SearchDocumentsPage extends Component {
             title="Search"
             body={
             <div>
-            <Row>
-            <Col>
-            <p>Please visit these URLs and click continue in zScaler if you are getting errors
-                <ul>
-                    <li><a href={Config.api + "/docs/search"}>{Config.api + "/docs/search"}</a></li>
-                    <li><a href={Config.api + "/docs/stats"}>{Config.api + "/docs/stats"}</a></li>
-                </ul>
-            </p>
-            </Col>
-            </Row>
+            <IntroductionPanel/>
             <Row>
                 <Col xs="3" className={["panel","search"]}>
                       <h2 className="h3">Search</h2>
