@@ -1,12 +1,12 @@
-/* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
+import newId from './GenerateID';
 
 export default class PopOver extends React.Component {
   constructor(props) {
     super(props);
-
     this.toggle = this.toggle.bind(this);
+    this._id = newId();
     this.state = {
       popoverOpen: false
     };
@@ -19,14 +19,13 @@ export default class PopOver extends React.Component {
   }
 
   render() {
+
     return (
       <div>
-        <Button id="Popover1" onClick={this.toggle}>
-          Launch Popover
-        </Button>
-        <Popover placement="bottom" isOpen={this.state.popoverOpen} target="Popover1" toggle={this.toggle}>
-          <PopoverHeader>Popover Title</PopoverHeader>
-          <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+        <Button id={this._id} color="info" onClick={this.toggle}>?</Button>
+        <Popover placement="bottom" isOpen={this.state.popoverOpen} target={this._id} toggle={this.toggle}>
+          <PopoverHeader>{this.props.title}</PopoverHeader>
+          <PopoverBody>{this.props.content}</PopoverBody>
         </Popover>
       </div>
     );

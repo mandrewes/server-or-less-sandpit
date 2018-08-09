@@ -6,6 +6,8 @@ import DocResult from '../components/DocResult'
 import SearchStats from '../components/SearchStats'
 import TableStats from '../components/TableStats'
 import IntroductionPanel from '../components/IntroductionPanel'
+import PopOver from '../components/PopOver'
+import Examples from '../components/Examples'
 
 import {
     NavItem,
@@ -43,6 +45,7 @@ export default class SearchDocumentsPage extends Component {
         this.onSearchButtonClick = this.onSearchButtonClick.bind(this);
         this.updateInputValue = this.updateInputValue.bind(this);
         this.updateInputValue = this.updateInputValue.bind(this);
+        this.acceptExampleModel = this.acceptExampleModel.bind(this);
 
     }
 
@@ -50,8 +53,11 @@ export default class SearchDocumentsPage extends Component {
         this.onSearchButtonClick();
     }
 
+    acceptExampleModel(m){
+        this.setState(m, this.onSearchButtonClick);
+    }
+
     updateInputValue(evt){
-        console.log("input field updated with "+evt.target.value);
         this.setState({
              [evt.target.name]: evt.target.value
            });
@@ -134,9 +140,16 @@ export default class SearchDocumentsPage extends Component {
             body={
             <div>
             <IntroductionPanel/>
+            <Examples cb={this.acceptExampleModel}/>
             <Row>
                 <Col xs="3" className={["panel","search"]}>
-                      <h2 className="h3">Search</h2>
+                      <h2 className="h3">Indexed Fields</h2>
+                      <PopOver
+                        title="Indexed Fields"
+                        content={
+                        "These fields are common across all documents and searches. At least one of these needs to be used to search a document (quickly)"
+                        }
+                       />
                       <Form onSubmit={this.handleSubmit}>
                         <FormGroup row>
                           <Label for="accountId" sm={3}>Account ID</Label>
@@ -165,10 +178,19 @@ export default class SearchDocumentsPage extends Component {
                         <hr/>
                         <Row>
                             <Col>
-                                <h3 class="h3">Free Form Fields</h3>
-                                <p>Free form fields. There can be as many as needed</p>
+                                <h3 class="h3">Non Indexed Fields</h3>
                             </Col>
+                        <PopOver
+                                 title="Non Indexed Fields"
+                                 content={
+                                 <p>These fields are dynamic and can store any data the frontend needs
+                                 <br/><br/>
+                                 These field scan also be searched quickly, in combination with at least one indexed field
+                                 </p>
+                                 }
+                        />
                         </Row>
+
                         <FormGroup row>
                           <Label for="freeFormName" sm={3}>Name</Label>
                           <Col sm={8}>
@@ -206,6 +228,21 @@ export default class SearchDocumentsPage extends Component {
                         <Col xs="8" className="text-right">
                             <Spinner loading={this.state.loading}/>
                             <SearchStats resultsInfo={this.state.resultsInfo}/>
+                        <PopOver
+                                 title="Search Results"
+                                 content={
+                                 <div>
+                                 <p>These are the results of the search, statistics here mean. </p>
+                                 <ul>
+                                 <li><b>timeTaken</b> - how long the server took to search the database</li>
+                                 <li><b>resultsReturned</b> - how many results the server returned to the UI</li>
+                                 <li><b>rowsProcessed</b> - how many database records the server loaded from DynamoDB at to generate the results</li>
+                                 <li><b>limitedAt</b> - the limit at which the server decided to stop searching and send data to the client</li>
+                                 <li><b>indexUsed</b> - the index used for the search</li>
+                                 </ul>
+                                 </div>
+                                 }
+                        />
                         </Col>
                     </Row>
 

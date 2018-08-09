@@ -137,7 +137,19 @@ public class DocService extends AbstractDynamoBackedService {
         SearchResult ret = new SearchResult();
 
         ret.setIndexUsed(queryExpression.getIndexName());
-        //queryExpression.withFilter("PostedBy = :v1 and begins_with(Message, :v2)");
+
+        String expr = "";
+
+        for (String key : req.getFreeForm().keySet()) {
+            eav.put(":" + key, new AttributeValue().withS(req.getFreeForm().get(key)));
+            if ( expr.length() > 0 ) {
+                expr += " and ";
+            }
+            expr += "freeFormMeta." + key + " = :" + key;
+        }
+        if ( expr.length() > 0 ) {
+            queryExpression.withFilterExpression(expr);
+        }
 
         queryExpression.withConsistentRead(false)
                 .withExpressionAttributeValues(eav);

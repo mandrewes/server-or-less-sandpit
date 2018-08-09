@@ -4,6 +4,7 @@ import { Card, CardText, CardBody,
 import Spinner from "./Spinner"
 import Config from '../config';
 import Api from '../api/Api'
+import PopOver from './PopOver'
 
 export default class TableStats extends Component {
     constructor(props) {
@@ -64,6 +65,20 @@ export default class TableStats extends Component {
         return (
             <div>
                 <h3>Table Stats</h3>
+                <PopOver
+                                 title="Table Stats"
+                                 content={
+                                 <div>
+                                 <p>This shows how much data is in the database </p>
+                                 <ul>
+                                 <li><b>tableSize</b> - how much data is stored in gigabytes</li>
+                                 <li><b>itemCount</b> - the number of records in the database</li>
+                                 <li><b>provisioned reads</b> -  the current setting for the speed that the server is allowed to read data from dynamoDB</li>
+                                 <li><b>provisioned writes</b> - the current setting for the speed that the server is allowed to write data from dynamoDB</li>
+                                 </ul>
+                                 </div>
+                                 }
+                        />
                 <ul>
                     <li><span className="stats">tableSize</span>{round(table.tableSizeBytes/1024/1024/1024)}GB</li>
                     <li><span className="stats">itemCount</span>{table.itemCount.toLocaleString()}</li>
@@ -71,6 +86,20 @@ export default class TableStats extends Component {
                     <li><span className="stats">provisioned writes</span>{table.provisionedThroughput.writeCapacityUnits}</li>
                 </ul>
                 <h3>Index Stats</h3>
+                <PopOver
+                                 title="Index Stats"
+                                 content={
+                                 <div>
+                                 <p>This shows how much data is in each index </p>
+                                 <ul>
+                                 <li><b>name</b> - the nam eof the index</li>
+                                 <li><b>size</b> - how much data is stored in gigabytes</li>
+                                 <li><b>provisioned reads</b> -  the current setting for the speed that the server is allowed to read data from dynamoDB</li>
+                                 <li><b>provisioned writes</b> - the current setting for the speed that the server is allowed to write data from dynamoDB</li>
+                                 </ul>
+                                 </div>
+                                 }
+                        />
                 <Indexes/>
             </div>
         );
