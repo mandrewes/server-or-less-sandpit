@@ -48,10 +48,10 @@ export default class TableStats extends Component {
             const items = indexes.map((index) =>
             <div>
                 <ul>
-                    <li><span className="stats">name</span>{index.indexName}</li>
-                    <li><span className="stats">provisioned reads</span>{index.provisionedThroughput.readCapacityUnits}</li>
-                    <li><span className="stats">provisioned writes</span>{index.provisionedThroughput.writeCapacityUnits}</li>
-                    <li><span className="stats">size</span>{round(index.indexSizeBytes/1024/1024/1024)}GB</li>
+                    <li><span className="stats">name</span>  {index.indexName}</li>
+                    <li><span className="stats">provisioned reads</span>  {index.provisionedThroughput.readCapacityUnits}</li>
+                    <li><span className="stats">provisioned writes</span>  {index.provisionedThroughput.writeCapacityUnits}</li>
+                    <li><span className="stats">size</span>  {round(index.indexSizeBytes/1024/1024/1024)}GB</li>
                </ul>
                 <hr/>
             </div>
@@ -63,7 +63,8 @@ export default class TableStats extends Component {
             );
         }
         return (
-            <div>
+            <Row className={["panel","panelHdr"]}>
+                <Col xs="6">
                 <h3>Table Stats</h3>
                 <PopOver
                                  title="Table Stats"
@@ -80,11 +81,13 @@ export default class TableStats extends Component {
                                  }
                         />
                 <ul>
-                    <li><span className="stats">tableSize</span>{round(table.tableSizeBytes/1024/1024/1024)}GB</li>
-                    <li><span className="stats">itemCount</span>{table.itemCount.toLocaleString()}</li>
-                    <li><span className="stats">provisioned reads</span>{table.provisionedThroughput.readCapacityUnits}</li>
-                    <li><span className="stats">provisioned writes</span>{table.provisionedThroughput.writeCapacityUnits}</li>
+                    <li><span className="stats">tableSize</span>  {round(table.tableSizeBytes/1024/1024/1024)}GB</li>
+                    <li><span className="stats">itemCount</span>  {table.itemCount.toLocaleString()}</li>
+                    <li><span className="stats">provisioned reads</span>  {table.provisionedThroughput.readCapacityUnits}</li>
+                    <li><span className="stats">provisioned writes</span>  {table.provisionedThroughput.writeCapacityUnits}</li>
                 </ul>
+                </Col>
+                <Col xs="6">
                 <h3>Index Stats</h3>
                 <PopOver
                                  title="Index Stats"
@@ -101,7 +104,8 @@ export default class TableStats extends Component {
                                  }
                         />
                 <Indexes/>
-            </div>
+                </Col>
+            </Row>
         );
     }
 }

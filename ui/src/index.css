@@ -28,6 +28,17 @@ body {
 h3 {
     display: inline-block;
     padding-right: 1em;
+    font-size: 1.1em;
+}
+
+h4 {
+    display: inline-block;
+    padding-right: 1em;
+    font-size: 0.8em;
+}
+
+.panelHdr {
+    padding-top: 5px;
 }
 
 .panel {
@@ -39,7 +50,22 @@ h3 {
    line-height: 1.0;
    color: #212529;
    text-align: left;
+   border-radius: 5px;
 }
+
+.ctrlGrp {
+   background-color: #eeeeee;
+}
+
+
+.ctrlGrp {
+   background-color: #eeeeee;
+}
+
+.fixFormPadding {
+    padding-right: 20px;
+}
+
 
 .search {
     margin-right: 1em;

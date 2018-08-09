@@ -25,7 +25,7 @@ export default class DocResult extends Component {
                 <Col xs="3">
                 {this.state.fileName}
                 </Col>
-                <Col xs="2">
+                <Col xs="2" className="text-right">
                  <DocModal meta={this.state}/>
                 </Col>
             </Row>

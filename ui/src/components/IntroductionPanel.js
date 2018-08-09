@@ -14,8 +14,8 @@ export default class IntroductionPanel extends Component {
     render() {
         return (
             <Row>
-                <Col xs="12">
-                <p>
+                <Col xs="12" className={["panel"]}>
+                <p  className={["panelHdr"]}>
                 This POC seeks to show that across a significant collection of data,
                  queries that combine both indexed and non indexed criteria can perform with sub second response times. While using dynamodb at low cost
                  </p>
