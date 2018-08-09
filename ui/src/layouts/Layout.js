@@ -34,6 +34,9 @@ export default class BaseLayout extends Component {
       return (
               <div>
                 <ToastContainer/>
+                <div className="pageHeading">
+                    <h1>SEARCH POC</h1>
+                </div>
                 <Container>
                     {this.props.body}
                 </Container>

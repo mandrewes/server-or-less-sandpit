@@ -129,6 +129,23 @@ export default class SearchDocumentsPage extends Component {
             );
             return (
                 <Col xs="12">
+                    <Row className="">
+                        <Col xs="3">
+                        Folder
+                        </Col>
+                        <Col xs="2">
+                        Group
+                        </Col>
+                        <Col xs="2">
+                        Account
+                        </Col>
+                        <Col xs="3">
+                        File Name
+                        </Col>
+                        <Col xs="2">
+                         Action
+                        </Col>
+                    </Row>
                   {items}
                 </Col>
             );
@@ -139,113 +156,89 @@ export default class SearchDocumentsPage extends Component {
             title="Search"
             body={
             <div>
-            <IntroductionPanel/>
-            <Examples cb={this.acceptExampleModel}/>
-            <Row>
-                <Col xs="3" className={["panel","search"]}>
-                      <h2 className="h3">Indexed Fields</h2>
-                      <PopOver
-                        title="Indexed Fields"
-                        content={
-                        "These fields are common across all documents and searches. At least one of these needs to be used to search a document (quickly)"
-                        }
-                       />
-                      <Form onSubmit={this.handleSubmit}>
-                        <FormGroup row>
-                          <Label for="accountId" sm={3}>Account ID</Label>
-                          <Col sm={8}>
-                            <Input name="accountId" id="accountId" bsSize="sm" value={this.state.accountId} onChange={this.updateInputValue}/>
-                          </Col>
-                        </FormGroup>
-                        <FormGroup row>
-                          <Label for="groupId" sm={3}>Group ID</Label>
-                          <Col sm={8}>
-                            <Input name="groupId" id="groupId" bsSize="sm" value={this.state.groupId} onChange={this.updateInputValue}/>
-                          </Col>
-                        </FormGroup>
-                        <FormGroup row>
-                          <Label for="customerId" sm={3}>Customer ID</Label>
-                          <Col sm={8}>
-                            <Input name="customerId" id="customerId" bsSize="sm" value={this.state.customerId} onChange={this.updateInputValue}/>
-                          </Col>
-                        </FormGroup>
-                        <FormGroup row>
-                          <Label for="folder" sm={3}>Folder</Label>
-                          <Col sm={8}>
-                            <Input name="folder" id="folder" bsSize="sm" value={this.state.folder} onChange={this.updateInputValue}/>
-                          </Col>
-                        </FormGroup>
-                        <hr/>
-                        <Row>
-                            <Col>
-                                <h3 class="h3">Non Indexed Fields</h3>
-                            </Col>
-                        <PopOver
-                                 title="Non Indexed Fields"
-                                 content={
-                                 <p>These fields are dynamic and can store any data the frontend needs
-                                 <br/><br/>
-                                 These field scan also be searched quickly, in combination with at least one indexed field
-                                 </p>
-                                 }
-                        />
-                        </Row>
 
-                        <FormGroup row>
-                          <Label for="freeFormName" sm={3}>Name</Label>
-                          <Col sm={8}>
-                            <Input name="freeFormNameA" id="freeFormNameA" bsSize="sm" value={this.state.freeFormNameA} onChange={this.updateInputValue}/>
+            <Row className={["panel"]}>
+                <Col xs="12">
+                <Row>
+                <Col xs="8"><h3>Search and Filter Criteria</h3>
+                 <PopOver
+                                        title="Indexed Fields"
+                                        content={
+                                        "These fields are common across all documents and searches. At least one of these needs to be used to search a document (quickly)"
+                                        }
+                                       />
+                    <PopOver
+                                                 title="Non Indexed Fields"
+                                                 content={
+                                                 <p>These fields are dynamic and can store any data the frontend needs
+                                                 <br/><br/>
+                                                 These field scan also be searched quickly, in combination with at least one indexed field
+                                                 </p>
+                                                 }
+                                                 />
+                </Col>
+                <Col xs="4" className="text-right"><Examples cb={this.acceptExampleModel}/></Col>
+                </Row>
+                </Col>
+                <Col xs="12" className={"search"}>
+                      <Form onSubmit={this.handleSubmit}>
+                      <Row>
+                          <Col xs="3">
+                            <FormGroup row>
+                              <Label for="accountId" sm={3}>Account ID</Label>
+                              <Input name="accountId" id="accountId" bsSize="sm" value={this.state.accountId} onChange={this.updateInputValue}/>
+                            </FormGroup>
+                            <FormGroup row>
+                              <Label for="groupId" sm={3}>Group ID</Label>
+                              <Input name="groupId" id="groupId" bsSize="sm" value={this.state.groupId} onChange={this.updateInputValue}/>
+                            </FormGroup>
                           </Col>
-                        </FormGroup>
-                        <FormGroup row>
-                          <Label for="freeFormValue" sm={3}>Value</Label>
-                          <Col sm={8}>
-                            <Input name="freeFormValueA" id="freeFormValueA" bsSize="sm" value={this.state.freeFormValueA} onChange={this.updateInputValue}/>
-                          </Col>
-                        </FormGroup>
-                        <FormGroup row>
-                          <Label for="freeFormNameB" sm={3}>Name</Label>
-                          <Col sm={8}>
-                            <Input name="freeFormNameB" id="freeFormNameB" bsSize="sm" value={this.state.freeFormNameB} onChange={this.updateInputValue}/>
-                          </Col>
-                        </FormGroup>
-                        <FormGroup row>
-                          <Label for="freeFormValueB" sm={3}>Value</Label>
-                          <Col sm={8}>
-                            <Input name="freeFormValueB" id="freeFormValueB" bsSize="sm" value={this.state.freeFormValueB} onChange={this.updateInputValue}/>
-                          </Col>
-                        </FormGroup>
+                          <Col xs="3">
+                                <FormGroup row>
+                                  <Label for="customerId" sm={3}>Customer ID</Label>
+                                  <Input name="customerId" id="customerId" bsSize="sm" value={this.state.customerId} onChange={this.updateInputValue}/>
+                                </FormGroup>
+                                <FormGroup row>
+                                  <Label for="folder" sm={3}>Folder</Label>
+                                  <Input name="folder" id="folder" bsSize="sm" value={this.state.folder} onChange={this.updateInputValue}/>
+                                </FormGroup>
+                        </Col>
+                        <Col xs="3">
+                            <FormGroup row>
+                              <Label for="freeFormName" sm={3}>Name A</Label>
+                                <Input name="freeFormNameA" id="freeFormNameA" bsSize="sm" value={this.state.freeFormNameA} onChange={this.updateInputValue}/>
+                            </FormGroup>
+                            <FormGroup row>
+                                <Label for="freeFormNameB" sm={3}>Name B</Label>
+                                <Input name="freeFormNameB" id="freeFormNameB" bsSize="sm" value={this.state.freeFormNameB} onChange={this.updateInputValue}/>
+                            </FormGroup>
+                         </Col>
+                         <Col xs="3">
+                            <FormGroup row>
+                              <Label for="freeFormValue" sm={3}>Value A</Label>
+                                <Input name="freeFormValueA" id="freeFormValueA" bsSize="sm" value={this.state.freeFormValueA} onChange={this.updateInputValue}/>
+                            </FormGroup>
+                            <FormGroup row>
+                              <Label for="freeFormValueB" sm={3}>Value B</Label>
+                                <Input name="freeFormValueB" id="freeFormValueB" bsSize="sm" value={this.state.freeFormValueB} onChange={this.updateInputValue}/>
+                            </FormGroup>
+                        </Col>
+                        </Row>
                       </Form>
                     <Button color="primary" onClick={self.onSearchButtonClick} >Search</Button>
-                    <hr/>
-                    <TableStats/>
                 </Col>
-                <Col xs="8" className={["panel","results"]}>
+                </Row>
+                <Row>
+                <Col xs="12" className={["panel"]}>
                     <Row className="resultsHdr">
-                        <Col xs="4">
+                        <Col xs="12">
                              <h2 class="h3">Results</h2>
                         </Col>
-                        <Col xs="8" className="text-right">
+                        <Col xs="12">
                             <Spinner loading={this.state.loading}/>
                             <SearchStats resultsInfo={this.state.resultsInfo}/>
-                        <PopOver
-                                 title="Search Results"
-                                 content={
-                                 <div>
-                                 <p>These are the results of the search, statistics here mean. </p>
-                                 <ul>
-                                 <li><b>timeTaken</b> - how long the server took to search the database</li>
-                                 <li><b>resultsReturned</b> - how many results the server returned to the UI</li>
-                                 <li><b>rowsProcessed</b> - how many database records the server loaded from DynamoDB at to generate the results</li>
-                                 <li><b>limitedAt</b> - the limit at which the server decided to stop searching and send data to the client</li>
-                                 <li><b>indexUsed</b> - the index used for the search</li>
-                                 </ul>
-                                 </div>
-                                 }
-                        />
                         </Col>
                     </Row>
-
                      <ResultsList results={this.state.results}/>
                 </Col>
                 </Row>

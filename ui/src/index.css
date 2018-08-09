@@ -2,10 +2,36 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: #f2f4f5;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.pageHeading {
+    padding-left: 1em;
+    padding-top: 0.5em;
+    font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif";
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 300;
+    line-height: 26.4px;
+}
+
+.pageHeading h1 {
+   // transform: scale(0.8, 1);
+}
+
+.popOver {
+    display: inline-block;
+}
+
+h3 {
+    display: inline-block;
+    padding-right: 1em;
 }
 
 .panel {
-   background-color: #eeeeee;
+   background-color: #ffffff;
    margin-top: 2em;
    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
    font-size: 1rem;
@@ -17,6 +43,7 @@ body {
 
 .search {
     margin-right: 1em;
+    margin: 10px;
 }
 
 .search label{
@@ -24,26 +51,28 @@ body {
     font-size: 0.8em;
 }
 
-.form-group {
-    margin-bottom: 0px;
-}
-
 .resultsHdr {
     margin-bottom: 2em;
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+
+
+.statName {
+    margin-right: 0.5em;
+    font-weight: bold;
 }
 
-.stats {
-    margin-right: 1em;
+.statValue {
+ margin-right: 1em;
 }
 
 .fieldName {
     margin-right: 1em;
+}
+
+.form-group {
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .resultRow {

@@ -21,8 +21,8 @@ export default class PopOver extends React.Component {
   render() {
 
     return (
-      <div>
-        <Button id={this._id} color="info" onClick={this.toggle}>?</Button>
+      <div className="popOver">
+        <Button id={this._id} color="info" onClick={this.toggle} size="sm" >?</Button>
         <Popover placement="bottom" isOpen={this.state.popoverOpen} target={this._id} toggle={this.toggle}>
           <PopoverHeader>{this.props.title}</PopoverHeader>
           <PopoverBody>{this.props.content}</PopoverBody>
