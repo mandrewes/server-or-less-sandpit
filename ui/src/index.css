@@ -58,6 +58,12 @@ h4 {
 }
 
 
+.resultsHdrCol {
+     border-bottom: 1px solid #eeeeee;
+     padding-bottom: 5px;
+}
+
+
 .ctrlGrp {
    background-color: #eeeeee;
 }
@@ -79,6 +85,7 @@ h4 {
 
 .resultsHdr {
     margin-bottom: 2em;
+   padding-top: 5px;
 }
 
 

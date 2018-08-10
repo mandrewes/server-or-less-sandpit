@@ -129,20 +129,20 @@ export default class SearchDocumentsPage extends Component {
             );
             return (
                 <Col xs="12">
-                    <Row className="">
-                        <Col xs="3">
+                    <Row className="resultsHdr">
+                        <Col xs="3" className="resultsHdrCol">
                         Folder
                         </Col>
-                        <Col xs="2">
+                        <Col xs="2" className="resultsHdrCol">
                         Group
                         </Col>
-                        <Col xs="2">
+                        <Col xs="2" className="resultsHdrCol">
                         Account
                         </Col>
-                        <Col xs="3">
+                        <Col xs="3" className="resultsHdrCol">
                         File Name
                         </Col>
-                        <Col xs="2" className="text-right">
+                        <Col xs="2" className={["text-right","resultsHdrCol"]}>
                          Action
                         </Col>
                     </Row>
@@ -205,17 +205,17 @@ export default class SearchDocumentsPage extends Component {
                           </Col>
                         <Col xs="6" className={"ctrlGrp"}>
                           <Col xs="12">
-                                                    <h4>Freeform Fields</h4>
+                             <h4>Freeform Fields</h4>
                               <PopOver
-                                                                             title="Freeform Fields"
-                                                                             content={
-                                                                             <p>These fields are dynamic and can store any data the frontend needs
-                                                                             <br/><br/>
-                                                                             These field scan also be searched quickly, in combination with at least one indexed field
-                                                                             </p>
-                                                                             }
-                                                                             />
-                                                  </Col>
+                                title="Freeform Fields"
+                                    content={
+                                    <p>These fields are dynamic and can store any data the frontend needs
+                                    <br/><br/>
+                                    These field scan also be searched quickly, in combination with at least one indexed field
+                                    </p>
+                                    }
+                              />
+                           </Col>
                          <Row>
                             <Col xs="6">
                             <FormGroup row>
