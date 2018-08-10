@@ -41,7 +41,7 @@ public class DocServiceRestFascade {
 
     @RequestMapping(value = "/docs/search", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
-    public SearchResult searchDocs(@RequestBody SearchRequest req) {
+    public SearchResult searchDocs(@RequestBody SearchRequest req) throws Exception {
         SearchResult ret = docService.searchDocuments(req);
         return ret;
     }

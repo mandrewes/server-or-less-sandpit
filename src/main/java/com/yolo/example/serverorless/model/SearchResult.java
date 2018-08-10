@@ -1,5 +1,7 @@
 package com.yolo.example.serverorless.model;
 
+import com.amazonaws.services.dynamodbv2.model.ConsumedCapacity;
+
 import java.util.List;
 
 /**
@@ -12,7 +14,11 @@ public class SearchResult {
     private int resultsReturned;
     private int limitedAt;
     private String indexUsed;
+    private Integer scannedCount;
+    private Integer count;
+    private ConsumedCapacity consumedCapacity;
     private List<DocDescriptor> results;
+
 
     public String getIndexUsed() {
         return indexUsed;
@@ -60,5 +66,29 @@ public class SearchResult {
 
     public void setRowsProcessed(int rowsProcessed) {
         this.rowsProcessed = rowsProcessed;
+    }
+
+    public Integer getScannedCount() {
+        return scannedCount;
+    }
+
+    public void setScannedCount(Integer scannedCount) {
+        this.scannedCount = scannedCount;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public ConsumedCapacity getConsumedCapacity() {
+        return consumedCapacity;
+    }
+
+    public void setConsumedCapacity(ConsumedCapacity consumedCapacity) {
+        this.consumedCapacity = consumedCapacity;
     }
 }

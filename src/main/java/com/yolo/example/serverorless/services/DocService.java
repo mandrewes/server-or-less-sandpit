@@ -8,6 +8,7 @@ import com.yolo.example.serverorless.model.SearchResult;
 import com.yolo.example.serverorless.utils.AbstractDynamoBackedService;
 import com.yolo.example.serverorless.utils.SearchToDocComparator;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.reflect.FieldUtils;
 import org.springframework.stereotype.Component;
 import tech.rsqn.useful.things.metrics.Metrics;
 
@@ -104,7 +105,7 @@ public class DocService extends AbstractDynamoBackedService {
         return ret;
     }
 
-    public SearchResult searchDocuments(SearchRequest req) {
+    public SearchResult searchDocuments(SearchRequest req) throws Exception {
         long start = System.currentTimeMillis();
 
         getTableInformation();
@@ -166,6 +167,13 @@ public class DocService extends AbstractDynamoBackedService {
         ret.setTimeTaken(end-start);
         ret.setRowsProcessed(ctr.get());
         ret.setResults(filtered);
+
+        QueryResult queryResult = (QueryResult)FieldUtils.readField(docs, "queryResult", true);
+
+        ret.setScannedCount(queryResult.getScannedCount());
+        ret.setCount(queryResult.getCount());
+        ret.setConsumedCapacity(queryResult.getConsumedCapacity());
+
         if ( filtered.size() == max) {
             ret.setLimitedAt(max);
         } else {
