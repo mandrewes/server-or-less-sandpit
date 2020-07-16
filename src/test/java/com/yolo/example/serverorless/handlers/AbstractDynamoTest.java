@@ -10,11 +10,17 @@ import org.testng.annotations.BeforeMethod;
 
 public abstract class AbstractDynamoTest {
 
+//    static {
+//
+//    }
     protected DynamoDBProxyServer server = null;
     protected AmazonDynamoDB dynamodb = null;
 
     @BeforeMethod
     public void setUp() throws Exception {
+
+        System.setProperty("aws.accessKeyId","its");
+        System.setProperty("aws.secretKey","local");
         System.setProperty("sqlite4java.library.path", "native-libs");
         String[] localArgs = { "-inMemory" };
         server = ServerRunner.createServerFromCommandLineArgs(localArgs);

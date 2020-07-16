@@ -21,14 +21,16 @@ public class LambdaStuffFacadeLocalIntegrationTests extends AbstractDynamoTest {
 
     @BeforeMethod
     public void setUp() throws Exception {
+
         System.setProperty("dynamo.region","us-west-2");
         System.setProperty("dynamo.endpoint","http://localhost:8000");
         super.setUp();
 
+
         LamdaSpringUtil.setGlobalRootContextPath("/spring/test-app-ctx.xml");
         LamdaSpringUtil.wireInSpring(this,"nada");
 
-        saveStuffFacade = new SaveStuffLambdaFacade();//LamdaSpringUtil.getCtx().getBean(SaveStuffLambdaFacade.class);
+        saveStuffFacade = new SaveStuffLambdaFacade();
     }
 
     @AfterMethod
